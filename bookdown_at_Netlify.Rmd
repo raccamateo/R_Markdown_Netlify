@@ -1,0 +1,19 @@
+---
+title: "Publicar libros virtuales hechos con R bookdown en Netlify"
+author: "Mateo W. Racca"
+date: "9/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+####Esto intenta ser una *explicación sobre cómo transformar un rmarkdown* (.rmd) *en un bonito libro digital*, gracias a [bookdown](https://bookdown.org/yihui/bookdown/) , *y cómo publicarlo* de manera bastante sencilla *en Netlify* a través de un deploy en GitHub que permita que cada vez que actualizamos algo ahí, el sitio se sincronice de manera automática.
+
+Para entender más o menos de qué va esto, deberías tener alguna noción sobre cómo funcionan markdown y Rstudio.
+
+Siempre me resulta útil tener a mano [esto](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) para repasar en caso de necesitar refrescar mi memoria respecto a R Markdown.
+
+Las configuraciones de su *.Rmd* van a ser exportadas a su archivo final, que en este caso va a ser un *gitbook*. Pueden ver el resto de los tipos de formatos a los que pueden exportar el .Rmd [acá](https://bookdown.org/yihui/bookdown/output-formats.html).
+
