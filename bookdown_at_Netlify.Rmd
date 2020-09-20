@@ -17,3 +17,4 @@ Siempre me resulta útil tener a mano [esto](https://rstudio.com/wp-content/uplo
 
 Las configuraciones de su *.Rmd* van a ser exportadas a su archivo final, que en este caso va a ser un *gitbook*. Pueden ver el resto de los tipos de formatos a los que pueden exportar el .Rmd [acá](https://bookdown.org/yihui/bookdown/output-formats.html).
 
+Por default, si usan niveles al momento de escribir títulos (#, ##, ### y así) se van a crear secciones en las que podemos encontrar el contenido que se corresponda al nivel superior. Es decir, si usamos un #H1, y debajo ##H2 nuestro documento va a crear un apartado con el título #H1 dentro del cual va estar ##H2. Y así, hasta que escribamos de nuevo #H1 y creemos una nueva sección que sigue la misma lógica.
