@@ -9,12 +9,33 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-####Esto intenta ser una *explicación sobre cómo transformar un rmarkdown* (.rmd) *en un bonito libro digital*, gracias a [bookdown](https://bookdown.org/yihui/bookdown/) , *y cómo publicarlo* de manera bastante sencilla *en Netlify* a través de un deploy en GitHub que permita que cada vez que actualizamos algo ahí, el sitio se sincronice de manera automática.
+# #Introducción
 
-Para entender más o menos de qué va esto, deberías tener alguna noción sobre cómo funcionan markdown y Rstudio.
+Esto intenta ser una *explicación sobre cómo transformar un rmarkdown* (.Rmd) *en un bonito libro digital*, gracias a [bookdown](https://bookdown.org/yihui/bookdown/) , *y cómo publicarlo* de manera bastante sencilla *en Netlify* a través de un deploy en GitHub que permita que cada vez que actualizamos algo ahí, el sitio se sincronice de manera automática.
 
-Siempre me resulta útil tener a mano [esto](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) para repasar en caso de necesitar refrescar mi memoria respecto a R Markdown.
+Para entender más o menos de qué va esto, deberías tener alguna noción sobre cómo funcionan markdown y R.
 
-Las configuraciones de su *.Rmd* van a ser exportadas a su archivo final, que en este caso va a ser un *gitbook*. Pueden ver el resto de los tipos de formatos a los que pueden exportar el .Rmd [acá](https://bookdown.org/yihui/bookdown/output-formats.html).
+# #Desarrollo
+Siempre me resulta útil tener a mano los siguientes links para repasar respecto a [R Markdown]((https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)) y  [Markdown en general](https://collectednotes.com/blog/a-tour-of-the-markdown-syntax).
 
-Por default, si usan niveles al momento de escribir títulos (#, ##, ### y así) se van a crear secciones en las que podemos encontrar el contenido que se corresponda al nivel superior. Es decir, si usamos un #H1, y debajo ##H2 nuestro documento va a crear un apartado con el título #H1 dentro del cual va estar ##H2. Y así, hasta que escribamos de nuevo #H1 y creemos una nueva sección que sigue la misma lógica.
+## ##Algunas cositas
+Las configuraciones de su *.Rmd* van a ser exportadas (cuando hagan el kniteo ) a su archivo final, que en este caso va a ser un *gitbook*. Pueden ver el resto de los tipos de formatos a los que pueden exportar el *.Rmd* [acá](https://bookdown.org/yihui/bookdown/output-formats.html).
+
+Por default, si usan niveles al momento de escribir títulos (#, ##, ### y así) se van a crear capítulos y/o secciones donde encontramos el contenido que se corresponda a cada nivel superior (#H1). 
+
+Es decir, si usamos un #H1 y debajo ##H2, nuestro documento va a crear un capítulo o apartado con el título #H1 dentro del cual va estar la sección ##H2. Y así, hasta que escribamos de nuevo #H1 y creemos un nuevo capítulo que sigue la misma lógica.
+
+Si no lo aclaramos, al momento de transformar nuestro *.Rmd* cada uno de estos capítulos va a ser exportado como un archivo aparte y bookdown va a compilarlos por orden numérico (en los nombres de archivos). 
+
+_Si tenemos:_
+
+- *index.Rmd* 
+
+- *03-conclusion.Rmd* 
+
+- *01-introduction.Rmd* 
+
+- *02-body.Rmd*
+
+**bookdown** va a compilar en este orden: *index*, *01-introduction*, *02-body* y *03-conclusion*.
+
