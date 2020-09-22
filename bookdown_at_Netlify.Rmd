@@ -8,12 +8,12 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 # #Introducción
-
 Esto intenta ser una *explicación sobre cómo transformar un rmarkdown* (.Rmd) *en un bonito libro digital*, gracias a [bookdown](https://bookdown.org/yihui/bookdown/) , *y cómo publicarlo* de manera bastante sencilla *en Netlify* a través de un deploy en GitHub que permita que cada vez que actualizamos algo ahí, el sitio se sincronice de manera automática.
 
 Para entender más o menos de qué va esto, deberías tener alguna noción sobre cómo funcionan markdown y R.
+
+La mayor parte de la información gracias a la que escribo esto está disponible en [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/), de *Yihui Xie*.
 
 # #Desarrollo
 Siempre me resulta útil tener a mano los siguientes links para repasar respecto a [R Markdown]((https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)) y  [Markdown en general](https://collectednotes.com/blog/a-tour-of-the-markdown-syntax).
@@ -21,7 +21,13 @@ Siempre me resulta útil tener a mano los siguientes links para repasar respecto
 ## ##Algunas cositas
 Las configuraciones de su *.Rmd* van a ser exportadas (cuando hagan el kniteo ) a su archivo final, que en este caso va a ser un *gitbook*. Pueden ver el resto de los tipos de formatos a los que pueden exportar el *.Rmd* [acá](https://bookdown.org/yihui/bookdown/output-formats.html).
 
-Por default, si usan niveles al momento de escribir títulos (#, ##, ### y así) se van a crear capítulos y/o secciones donde encontramos el contenido que se corresponda a cada nivel superior (#H1). 
+Así se ve la configuración de cualquier .Rmd apenas lo creamos:
+![alt text here](https://raw.githubusercontent.com/raccamateo/rmd_to_bookdown_at_Netlify/master/s1.png)
+
+Más adelante, *vamos a modificar esa configuración para poder ajustar nuestro GitBook* de acuerdo a lo que necesitemos.
+
+Por default, **si se usan niveles** al momento de escribir títulos (#, ##, ### y así) **bookdown va a crear capítulos y/o secciones** donde el contenido se corresponde a cada nivel superior (#H1 <- ##H2 <- ###H3).
+
 
 Es decir, si usamos un #H1 y debajo ##H2, nuestro documento va a crear un capítulo o apartado con el título #H1 dentro del cual va estar la sección ##H2. Y así, hasta que escribamos de nuevo #H1 y creemos un nuevo capítulo que sigue la misma lógica.
 
@@ -39,3 +45,24 @@ _Si tenemos:_
 
 **bookdown** va a compilar en este orden: *index*, *01-introduction*, *02-body* y *03-conclusion*.
 
+**Entonces, para repasar:** si en nuestro R Markdown usamos niveles, cada uno de nuestros niveles principales (H1) se va a transformar en un capítulo o una sección de nuestro libro y por default bookdown va a exportar cada capítulo por separado para después compilarlos siguiendo un orden. 
+
+**¿Podemos nosotros especificar el orden de compilación de nuestros archivos Rmd si no queremos usar el index, 01-…, 02-… y así?** 
+
+Sí, para eso debemos crear un archivo llamado **_bookdown.yml** en el directorio de nuestro proyecto, y ahí podemos especificar el orden de compilación.
+
+Vamos a un ejemplo, si los nombres de nuestros *.Rmd*  son *index*, *conclusion*, *introduction* y *body*, podríamos especificar el orden en **_bookdown.yml** así:
+
+
+```R
+rmd_files: ["index.Rmd", "introduction.Rmd", "body.Rmd", "conclusion.Rmd"]
+```
+
+
+Lo que acaban de leer tiene como base lo explicado por *Yihui Xie* en la sección [usage](https://bookdown.org/yihui/bookdown/usage.html).
+
+**Esto es personal:** yo, prefiero configurar para que todo se exporte en un mismo archivo. 
+
+**¿Por qué?** Porque me resulta más simple encontrar y editar cuando están integrados en vez de por separado. 
+
+Trabajar con un solo archivo tiene un costo más alto y nos quita la posibilidad de crear una url para cada capítulo (lo que es probable resulte más útil al momento de compartir). Creo que deberían intentar de ambas formas y ver qué les resulta más práctico, o como corre mejor.
